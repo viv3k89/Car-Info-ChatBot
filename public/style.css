@@ -1,0 +1,477 @@
+/* Basic styling */
+body,
+html {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    height: 100%;
+    background-color: #f2f2f2;
+    color: #1c2e4a;
+    scroll-behavior: smooth;
+    scrollbar-width: 1330px;
+}
+
+/* Navbar styling */
+.navbar {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    display: flex;
+    position: fixed;
+    justify-content: center;
+    background-color: #f4f6f9;
+    padding: 10px;
+    box-sizing: border-box;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+}
+
+.navbar a {
+    margin-left: 30px;
+    color: #1c2e4a;
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: color 0.3s;
+}
+
+.navbar a:hover {
+    color: red;
+}
+
+/* Image container styling */
+.image-container {
+    position: relative;
+    width: 1100px;
+    /* Set a fixed width here */
+    height: 100vh;
+    overflow: visible;
+    /* Optional, to show scrollbar if needed */
+    /* Other styles... */
+}
+
+/* Image animations */
+.image1,
+.image3 {
+    position: absolute;
+    left: -100%;
+    top: 0;
+    height: 100%;
+    width: auto;
+    animation: moveRight 5s forwards;
+}
+
+.image2 {
+    position: relative;
+    right: -100%;
+    top: 16%;
+    height: 100%;
+    width: auto;
+    transform: scale(144%);
+    animation: moveLeft 5s forwards;
+
+}
+
+/* Animation keyframes */
+@keyframes moveRight {
+    0% {
+        left: -100%;
+    }
+
+    100% {
+        left: 0;
+    }
+}
+
+@keyframes moveLeft {
+    0% {
+        right: -100%;
+    }
+
+    100% {
+        right: 0;
+    }
+}
+
+/* Text overlay */
+.text-overlay {
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+    text-align: center;
+    color: #1c2e4a;
+    background: transparent;
+    padding: 18px;
+    border-radius: 8px;
+}
+
+/* Styling for main title */
+.text-overlay .title {
+    font-size: 38px;
+    margin: 0;
+    font-weight: 900;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Animations for text */
+.text-overlay .startech {
+    animation: slideUp 4s forwards 1s;
+}
+
+.text-overlay .awards {
+    animation: slideDown 4s forwards 1s;
+}
+
+/* Animation keyframes for text elements */
+@keyframes slideUp {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideDown {
+    0% {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Mission Section Styling */
+.mission-section {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+    background-color: #f2f2f2;
+    transition: background-color 1s ease-in-out;
+    color: #ffffff;
+}
+
+/* Mission section active state */
+.mission-section.active {
+    background-color: #407d92;
+}
+
+.mission-subtitle {
+    font-size: 16px;
+    letter-spacing: 1.2px;
+    color: #b0c5d1;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+}
+
+.mission-title {
+    font-size: 48px;
+    font-weight: 700;
+    line-height: 1.3;
+    color: #ffffff;
+    margin: 0;
+}
+
+.mission-description {
+    max-width: 600px;
+    font-size: 18px;
+    line-height: 1.6;
+    color: #d8e6eb;
+    margin-top: 20px;
+}
+
+/* Background video styling */
+.video-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    overflow: hidden;
+}
+
+.video-background iframe {
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover;
+    opacity: 1;
+}
+
+/* Main content styling */
+.content {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.container-list {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 50px;
+    z-index: 1;
+}
+
+.list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.list-item {
+    padding: 10px 20px;
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 10px;
+    font-size: 18px;
+    font-family: Arial, sans-serif;
+    color: #333;
+    text-align: center;
+    max-width: 200px;
+}
+
+.center-image {
+    width: 200px;
+    height: 200px;
+    background-image: url('your-image.png');
+    /* Add your image source here */
+    background-size: cover;
+    background-position: center;
+    border-radius: 50%;
+}
+
+.title {
+    position: absolute;
+    top: 20px;
+    font-size: 36px;
+    font-weight: bold;
+    font-family: Arial, sans-serif;
+    color: #333;
+    text-align: center;
+}
+
+.container {
+    background-color: #407d92;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding: 0px;
+    height: 100vh;
+}
+
+.left-side {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.right-side {
+    width: 400px;
+    margin-left: 50px;
+}
+
+.logo {
+    font-size: 48px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.logo span {
+    color: #1c2e4a;
+}
+
+h2 {
+    margin-bottom: 20px;
+    color: #1c2e4a;
+}
+
+.contact-info {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+
+.contact-info h3 {
+    margin-bottom: 5px;
+}
+
+.contact-info p {
+    margin-bottom: 10px;
+}
+
+.contact-info a {
+    color: #1c2e4a;
+    text-decoration: none;
+}
+
+.contact-info a:hover {
+    text-decoration: underline;
+}
+
+.social-media {
+    display: flex;
+    align-items: center;
+}
+
+.social-media img {
+    margin-right: 10px;
+}
+
+.footer {
+    text-align: center;
+    font-size: 14px;
+    padding-top: 25px;
+    background-color: #1c2e4a;
+    color: white;
+    height: 70px;
+
+}
+
+.footer a {
+    color: #1c2e4a;
+    text-decoration: none;
+}
+
+.footer a:hover {
+    text-decoration: underline;
+}
+
+/* Initial state before animation */
+.left-animate,
+.right-animate {
+    opacity: 0;
+    transform: translateX(-100px);
+    /* Start off-screen */
+    transition: transform 1s, opacity 1s;
+}
+
+/* Keyframes for left and right animations */
+@keyframes slideInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-100px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0) translateY(-50px);
+        /* Diagonal final position */
+    }
+}
+
+@keyframes slideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(100px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(10px) translateY(30px);
+        /* Diagonal final position */
+    }
+}
+
+/* Apply animations when the elements come into view */
+.left-animate.active {
+    animation: slideInLeft 2s forwards;
+}
+
+.right-animate.active {
+    animation: slideInRight 2s forwards;
+}
+
+.footer-image img {
+    width: 100%;
+    /* Adjusts image to full width of container */
+    max-width: 1000px;
+    /* Limit the maximum width */
+    margin-top: 20px;
+}
+
+#backToTopBtn {
+    position: fixed;
+    bottom: 50px;
+    right: 30px;
+    border: none;
+    background-color: red;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: larger;
+    cursor: pointer;
+    display: none;
+}
+
+.signupsection {
+    display: flex;
+    background-color: #f2f2f2;
+    height: 650px;
+    width: 100%;
+}
+
+.image4 {
+    height: 100%;
+    width: auto;
+    rotate: 180deg;
+    position: relative;
+    left: 920px;
+}
+
+#getstart {
+    height: 50px;
+    width: 170px;
+    border-radius: 15px;
+    position: relative;
+    top: 50px;
+    left: 160px;
+    background-color: #407d92;
+    border: #f2f2f2 1px solid;
+}
+
+#design {
+    height: 450px;
+    width: 500px;
+    background-color: #1c2e4a;
+    position: absolute;
+    top: 2400px;
+    left: 150px;
+    border-radius: 13px;
+
+}
+
+#design img {
+    position: relative;
+    left: -100px;
+    top: -90px;
+    rotate: 160deg;
+    height: 200px;
+    width: 500px;
+}
+
+#design p {
+    display: flex;
+    color: white;
+    position: relative;
+    font-size: 25px;
+    top: 200px;
+}

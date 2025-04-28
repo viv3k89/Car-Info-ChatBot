@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buy a New Car</title>
+    <style>
+        /* Basic Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            color: #333;
+        }
+
+        /* Navbar Styling */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1em;
+            background-color: #333;
+            color: #fff;
+            position: relative;
+            width: 100%;
+            z-index: 10;
+        }
+
+        .navbar .logo {
+            font-size: 1.5em;
+            color: #fff;
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+        }
+
+        .nav-links li {
+            margin-left: 1em;
+        }
+
+        .nav-links a {
+            color: #fff;
+            text-decoration: none;
+        }
+
+        /* Updated Banner Styling */
+        .banner {
+            background-image: url('https://cdn.ramseysolutions.net/daveramsey.com/media/blog/saving/large-expenses/how-to-get-your-dream-car.jpg');
+            /* Replace with actual background image URL */
+            background-size: cover;
+            background-position: center;
+            height: 600px;
+            /* Adjusted to show the full background image */
+            padding: 4em;
+            text-align: center;
+            color: #f90f0f;
+            position: relative;
+            margin-top: 60px;
+            /* To prevent navbar overlap */
+        }
+
+        .banner::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            /* Overlay for readability */
+            z-index: 1;
+        }
+
+        .banner h1,
+        .banner p {
+            position: relative;
+            z-index: 2;
+        }
+
+        .banner h1 {
+            font-size: 3em;
+            margin-bottom: 0.5em;
+            font-weight: bold;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+        }
+
+        .banner p {
+            font-size: 1.5em;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+        }
+
+        /* Car Section */
+        .car-section {
+            padding: 2em;
+            text-align: center;
+        }
+
+        .filter {
+            margin-bottom: 2em;
+            text-align: center;
+        }
+
+        #priceRange {
+            width: 80%;
+            margin-top: 0.5em;
+        }
+
+        .car-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            /* Adjust the number of columns */
+            gap: 1.5em;
+            justify-items: center;
+            margin-top: 2em;
+        }
+
+        .car-card {
+            border: 1px solid #ccc;
+            padding: 1em;
+            border-radius: 5px;
+            width: 100%;
+            /* Take full width of the grid cell */
+            text-align: left;
+            transition: transform 0.2s ease;
+        }
+
+        .car-card:hover {
+            transform: scale(1.05);
+        }
+
+        .car-card img {
+            width: 100%;
+            border-radius: 5px;
+        }
+
+        /* Contact Section */
+        .contact-section {
+            padding: 2em;
+            background-color: #f4f4f4;
+            text-align: center;
+        }
+
+        /* Footer */
+        footer {
+            padding: 1em;
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+        }
+
+        /* Responsiveness */
+        @media (max-width: 768px) {
+            .nav-links {
+                flex-direction: column;
+                display: none;
+            }
+
+            .navbar {
+                flex-direction: column;
+            }
+
+            .car-list {
+                flex-direction: column;
+            }
+
+            #priceRange {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Header and Banner -->
+    <header>
+        <nav class="navbar">
+            <a href="#" class="logo">CarShop</a>
+            <ul class="nav-links">
+                <li><a href="#cars">Cars</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+        <div class="banner">
+            <!-- <h1>Find Your Dream Car</h1> -->
+            <!-- <p>Choose from a wide range of cars to match your style and budget.</p> -->
+        </div>
+    </header>
+
+    <!-- Car Listings and Filters -->
+    <section id="cars" class="car-section">
+        <div class="filter">
+            <h2>Filter by Price:</h2>
+            <label>Max Price:
+                <input type="range" id="priceRange" min="30000" max="150000" value="80000"
+                    oninput="updatePriceDisplay()">
+            </label>
+            <span id="priceValue">$80,000</span>
+        </div>
+
+        <div class="car-list" id="carList">
+            <!-- Car listings will go here -->
+        </div>
+    </section>
+
+    <!-- Contact and Footer -->
+    <section id="contact" class="contact-section">
+        <h2>Contact Us</h2>
+        <a href="1sttry.html" class="btn-primary">back to the main page</a>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 CarShop. All rights reserved.</p>
+    </footer>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const carData = [
+                { id: 1, name: "Tata Nexon", price: 40000, image: "https://imgd.aeplcdn.com/370x208/n/daabmbb_1688461.jpg?q=80" },
+                { id: 2, name: "Maruti Suzuki Swift", price: 35000, image: "https://shivamautozone.com/wp-content/uploads/2024/05/Swift-8-768x433.webp" },
+                { id: 3, name: "Mahindra XUV700", price: 70000, image: "https://imgd.aeplcdn.com/664x374/n/cw/ec/42355/xuv700-exterior-right-front-three-quarter-3.jpeg?isig=0&q=80" },
+                { id: 4, name: "Hyundai Creta", price: 75000, image: "https://imgd.aeplcdn.com/664x374/n/cw/ec/141115/creta-exterior-right-front-three-quarter-16.jpeg?isig=0&q=80" },
+                { id: 5, name: "Honda City", price: 85000, image: "https://img.gaadicdn.com/images/car-images/large/Honda/City/9710/1677754515528/222_Platinum-White-Pearl_b8b8c0.jpg" },
+                { id: 6, name: "Toyota Corolla", price: 95000, image: "https://imgd.aeplcdn.com/1056x594/n/qmu56ra_1421817.jpg?q=80" },
+                { id: 7, name: "BMW X5", price: 125000, image: "https://prod.cosy.bmw.cloud/bmvis/cosySec?COSY-EU-100-2545J3qAHyFnz5cRoHSWRzMESDsVcRoH7QRzMESV59VMb3G6bUJ1rjGRPixrQbUoaFoGq0zdgtKal38mrjGm7SErQbCUQMs2q0zRERW8J13882q0zAanj4l382hhq0zkRNSQBL4QSW8zLAd8W8J1ExSnQNUMESQdoBuKUQqoQEdcNq0zkdHNqoQqRrjGzIEtN3WCIqx8W8zWu3n9qogqaRnvl3ilUb1%25cRScH8Q3MbnMdomsyJGy53sBrQ%25r9R1HW8zWubxdqogqaFHdl3ilUj8ocRScH7o7MbnMd0o6yJGy5BOUrQ%25r9SaJW8zWunRUqogqaGQ7l3ilU%258jcRScHzesMbnMdg7oyJGy5i0BrQ%25r9SDGW8zWun9IqogqaGS0l3ilU%2539cRScHzN7MbnMdgCEyJGy5mSBrQ%25r9sRnW8zWuKbIqogqaDnOl3ilURFjcRScHb8gMbnMdJoHyJGy5Q3grQ%25r98UnW8zWuonjqogqa3GIl3ilUR3AcRScHb6oMbnMdJCRyJGy5Q4BrQ%25r99aRW8zWuBJjqogqaYQ4l3ilUE40cRScHFj9MbnMdj%25OyJGy572RrQbZUe8nIulBg3a9Tl38vrjGQ9saUW8JfQiAKq0zS3JW8J2MESW8%255uarQbucYia4" },
+                { id: 8, name: "Audi A6", price: 140000, image: "https://imgd.aeplcdn.com/664x374/n/cw/ec/39472/a6-exterior-right-front-three-quarter-2.jpeg?isig=0&q=80" }
+            ];
+
+            const carList = document.getElementById("carList");
+            const priceRange = document.getElementById("priceRange");
+            const priceValue = document.getElementById("priceValue");
+
+            // Initial display of cars
+            displayCars(carData);
+
+            // Update displayed price and filter cars in real-time
+            priceRange.addEventListener("input", function () {
+                updatePriceDisplay();
+                filterCars();
+            });
+
+            // Function to update the price display
+            function updatePriceDisplay() {
+                priceValue.textContent = `$${parseInt(priceRange.value).toLocaleString()}`;
+            }
+
+            // Filter cars based on price
+            function filterCars() {
+                const maxPrice = parseInt(priceRange.value);
+                const filteredCars = carData.filter(car => car.price <= maxPrice);
+                displayCars(filteredCars);
+            }
+
+            // Display cars in the car list section
+            function displayCars(cars) {
+                carList.innerHTML = ""; // Clear the previous cars
+                if (cars.length === 0) {
+                    carList.innerHTML = "<p>No cars available within this price range.</p>";
+                } else {
+                    cars.forEach(car => {
+                        const carCard = document.createElement("div");
+                        carCard.classList.add("car-card");
+                        carCard.innerHTML = `
+                            <img src="${car.image}" alt="${car.name}">
+                            <h3>${car.name}</h3>
+                            <p>Price: $${car.price.toLocaleString()}</p>
+                        `;
+                        carList.appendChild(carCard);
+                    });
+                }
+            }
+        });
+    </script>
+
+</body>
+
+</html>

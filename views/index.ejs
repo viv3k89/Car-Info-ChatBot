@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CAR CATALOG</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+
+    <!-- Image container with animations -->
+    <div class="image-container">
+        <img src="https://cdn.prod.website-files.com/65ef0d86eff3b9ba6b18aef9/6602b4184d0c4e136c0183f4_hero-image-2-tablet.png"
+            alt="Image 1" class="image1">
+        <img src="https://cdn.prod.website-files.com/65ef0d86eff3b9ba6b18aef9/65f42cc5f90e1d3b2215bd7f_394397%206%20copy%20(1).png"
+            alt="Image 3" class="image3">
+        <img src="https://cdn.prod.website-files.com/65ef0d86eff3b9ba6b18aef9/65f462326356e70fa630f505_hero1-img%20(1).png"
+            alt="Image 2" class="image2">
+
+        <!-- Text overlay -->
+        <div class="text-overlay">
+            <div class="title">
+                <span class="startech">CAR</span>
+                <span class="awards">CATALOG</span>
+            </div>
+        </div>
+    </div>
+    <div class="navbar">
+        <a href="#" id="Home">Home</a>
+        <a href="#" id="aboutus">About</a>
+        <a href="#" id="display">Display</a>
+        <a href="#" id="Contact">Contact US</a>
+        <a href="#" id="signup">Get Started</a>
+    </div>
+    <!-- Mission Section -->
+    <section class="mission-section" id="mission-section">
+        <h2 class="mission-title">
+            <span id="typing-text"></span>
+        </h2>
+        <p class="mission-description">At Car Info Hub, our mission is to provide you with comprehensive car
+            information, in-depth reviews, model comparisons, and user insights. We aim to simplify the car-buying
+            process by equipping you with all the necessary knowledge to make an informed decision.
+        </p>
+
+    </section>
+
+    <!-- BackGround Video-->
+    <div class="video-background">
+        <iframe
+            src="https://www.youtube.com/embed/JsDSFPv4bkw?si=wFUMgyruY3SaMuGd&autoplay=1&mute=1&loop=1&playlist=JsDSFPv4bkw"
+            frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+    </div>
+    <div class="content">
+        <h1 class="title"></h1>
+        <div class="container-list">
+            <div class="list">
+                <div class="list-item left-animate">Latest Models</div>
+                &ensp;
+                &ensp;
+                <div class="list-item left-animate">User Friendly ChatBot To Help You</div>
+                &ensp;
+                &ensp;
+                &ensp;
+                <div class="list-item left-animate">Electric Vehicles</div>
+            </div>
+            <div class="center-image"></div>
+            <div class="list">
+                <div class="list-item right-animate">Find Your Dream Cars</div>
+                &ensp;
+                &ensp;
+                &ensp;
+                <div class="list-item right-animate">Luxury Cars</div>
+                &ensp;
+                &ensp;
+                &ensp;
+                &ensp;
+                <div class="list-item right-animate">Budget Options</div>
+            </div>
+        </div>
+
+    </div>
+    <div class="signupsection">
+        <img src="https://cdn.prod.website-files.com/65ef0d86eff3b9ba6b18aef9/65f42cc5f90e1d3b2215bd7f_394397%206%20copy%20(1).png"
+            alt="Image 3" class="image4">
+        <!-- Text overlay -->
+        <div id="design">
+            <p>&ensp;Get early access to new features, exclusive  &ensp;discounts, personalized recommendations</p>
+            <img src="https://cdn.prod.website-files.com/65ef0d86eff3b9ba6b18aef9/65fb26581d1a454e1ab4778a_3D%20Abstract3_%20(15).png"
+                alt="">
+            <button id="getstart"><a href="http://localhost:8080/signup">GET STARTED>>></a></button>
+        </div>
+    </div>
+    <hr>
+    <div class="container">
+        <div class="left-side">
+            <div class="footer-image">
+                <img src="https://cdn.prod.website-files.com/65ef0d86eff3b9ba6b18aef9/6603037c63eb26de0b4cdc48_3d%20cta-p-800.png"
+                    alt="Car Image">
+            </div>
+        </div>
+        <div class="right-side">
+            <div class="logo">CAR <span>CATALOG</span></div>
+            <div class="contact-info">
+                <h3>Contact Us</h3>
+                <p>Email: <a href="mailto:info@startechawards.com">support@carinfohub.com</a></p>
+                <p>Phone: <a href="tel:+1234567890">+1 234 567 890</a></p>
+            </div>
+            <div class="social-media">
+                <a href="#"><img src="facebook-icon.png" alt="" width="30"></a>
+                <a href="#"><img src="twitter-icon.png" alt="" width="30"></a>
+                <a href="#"><img src="instagram-icon.png" alt="" width="30"></a>
+            </div>
+            <h2>About CAR CATALOG</h2>
+            <p>Contact us for any inquiries, feedback, or support related to car information. We're here to assist you
+                in finding the best vehicle for your needs!</p>
+        </div>
+    </div>
+    <button id="backToTopBtn" title="Go to top">↑</button>
+    <div class="footer">
+        <p>&copy; 2024 CAR CATALOG. All rights reserved. | <a href="#">Privacy Policy</a></p>
+    </div>
+
+    <script>
+        //JavaScript to handle scroll-triggered background color change
+        window.addEventListener("scroll", function () {
+            const missionSection = document.getElementById("mission-section");
+            const scrollPosition = window.scrollY;
+            const missionSectionTop = missionSection.offsetTop;
+
+            if (scrollPosition >= missionSectionTop - window.innerHeight / 2) {
+                missionSection.classList.add("active");
+            } else {
+                missionSection.classList.remove("active");
+            }
+        });
+        // Function to check if an element is in the viewport
+        function isInViewport(element) {
+            const rect = element.getBoundingClientRect();
+            return (
+                rect.top >= 0 &&
+                rect.left >= 0 &&
+                rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+                rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+            );
+        }
+
+        // Function to add active class when elements come into view
+        function animateOnScroll() {
+            const leftItems = document.querySelectorAll('.left-animate');
+            const rightItems = document.querySelectorAll('.right-animate');
+
+            leftItems.forEach(item => {
+                if (isInViewport(item)) {
+                    item.classList.add('active');
+                }
+            });
+
+            rightItems.forEach(item => {
+                if (isInViewport(item)) {
+                    item.classList.add('active');
+                }
+            });
+        }
+
+        // Listen for scroll events to trigger the animation
+        window.addEventListener('scroll', animateOnScroll);
+        const text = "Empowering You with Knowledge to Make the Right Car Choice";
+        const typingText = document.getElementById("typing-text");
+        let i = 0;
+
+        function typeWriter() {
+            if (i < text.length) {
+                typingText.textContent += text.charAt(i);
+                i++;
+                setTimeout(typeWriter, 100); // Adjust the delay as needed
+            }
+        }
+
+        function isElementInViewport(el) {
+            const rect = el.getBoundingClientRect();
+            return (
+                rect.top >= 0 &&
+                rect.left >= 0 &&
+                rect.bottom <= (window.innerHeight || document.documentElement.clientHeight)
+                &&
+                rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+            );
+        }
+
+        window.addEventListener('scroll', () => {
+            if (isElementInViewport(typingText)
+                && !typingText.classList.contains('typing')) {
+                typingText.classList.add('typing');
+                typeWriter();
+            }
+        });
+        const backToTopBtn = document.getElementById('backToTopBtn');
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 200) {
+                backToTopBtn.style.display = 'block';
+            } else {
+                backToTopBtn.style.display = 'none';
+            }
+        });
+
+        backToTopBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+        const about = document.getElementById('aboutus');
+        const home = document.getElementById('Home');
+        const contact = document.getElementById('Contact');
+        const display = document.getElementById('display');
+        const signup = document.getElementById('signup');
+
+        about.addEventListener('click', (e) => {
+            e.preventDefault();
+            window.scrollTo({
+                top: 600,
+                behavior: 'smooth'
+            });
+        });
+        Home.addEventListener('click', (e) => {
+            e.preventDefault();
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+        display.addEventListener('click', (e) => {
+            e.preventDefault();
+            window.scrollTo({
+                top: 1000,
+                behavior: 'smooth'
+            });
+        });
+        signup.addEventListener('click', (e) => {
+            e.preventDefault();
+            window.scrollTo({
+                top: 2100,
+                behavior: 'smooth'
+            });
+        });
+        contact.addEventListener('click', (e) => {
+            e.preventDefault();
+            window.scrollTo({
+                top: 2700,
+                behavior: 'smooth'
+            });
+        });
+    </script>
+
+</body>
+
+</html>

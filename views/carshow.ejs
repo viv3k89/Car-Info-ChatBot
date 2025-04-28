@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Car Recommendations</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            width: 100%;
+            text-align: center;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .car-cards {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+
+        .card {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            padding: 20px;
+            text-align: left;
+            transition: transform 0.2s ease-in-out;
+        }
+
+        .card img {
+            width: 100%;
+            border-radius: 8px;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .card h3 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .card p {
+            margin: 5px 0;
+            color: #555;
+        }
+
+        .card:hover {
+            transform: scale(1.05);
+        }
+
+        .card .price {
+            font-size: 20px;
+            font-weight: bold;
+            color: #2d2d2d;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Car Recommendations</h1>
+        <div class="car-cards">
+            <% cars.forEach(car => { %>
+                <div class="card">
+                    <img src="https://stimg.cardekho.com/images/carexteriorimages/630x420/Lamborghini/Urus/10635/1724844423793/front-left-side-47.jpg?impolicy=resize&imwidth=480" alt="<%= car.make %> <%= car.model %>">
+                    <h3><%= car.Make %> <%= car.Model %> (<%= car.Year %>)</h3>
+                    <p><strong>Engine Type:</strong> <%= car.EngineType %></p>
+                    <p><strong>Fuel Economy:</strong> <%= car.FuelEconomy %></p>
+                    <p><strong>Transmission:</strong> <%= car.Transmission %></p>
+                    <p><strong>Drivetrain:</strong> <%= car.Drivetrain %></p>
+                    <p><strong>Safety Ratings:</strong> <%= car.SafetyRatings %></p>
+                    <p class="price">Price: ₹<%= car.Price%></p>
+                </div>
+            <% }) %>
+        </div>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CarBot Assistant</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f3f4f6;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+        }
+
+        .chat-container {
+            width: 100%;
+            max-width: 42rem;
+            background: white;
+            border-radius: 0.75rem;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .chat-header {
+            background: #2563eb;
+            color: white;
+            padding: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .chat-header h1 {
+            font-size: 1.25rem;
+            font-weight: 600;
+        }
+
+        .car-icon {
+            color: white;
+        }
+
+        .messages-container {
+            height: 600px;
+            overflow-y: auto;
+            padding: 1rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .message {
+            max-width: 80%;
+            padding: 0.75rem 1rem;
+            border-radius: 0.5rem;
+            white-space: pre-wrap;
+        }
+
+        .message.bot {
+            align-self: flex-start;
+            background: #f3f4f6;
+            color: #1f2937;
+        }
+
+        .message.user {
+            align-self: flex-end;
+            background: #2563eb;
+            color: white;
+        }
+
+        .options {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 0.5rem;
+        }
+
+        .option-button {
+            background: white;
+            color: #2563eb;
+            border: 1px solid #e5e7eb;
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            font-size: 0.875rem;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .option-button:hover {
+            background: #f8fafc;
+        }
+
+        .chat-input {
+            padding: 1rem;
+            border-top: 1px solid #e5e7eb;
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .chat-input input {
+            flex: 1;
+            padding: 0.5rem 1rem;
+            border: 1px solid #e5e7eb;
+            border-radius: 0.5rem;
+            outline: none;
+            font-size: 1rem;
+        }
+
+        .chat-input input:focus {
+            border-color: #2563eb;
+            box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.1);
+        }
+
+        .chat-input button {
+            background: #2563eb;
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.2s;
+        }
+
+        .chat-input button:hover {
+            background: #1d4ed8;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="chat-container">
+        <div class="chat-header">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="car-icon">
+                <path
+                    d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.4 2.9A3.7 3.7 0 0 0 2 12v4c0 .6.4 1 1 1h2">
+                </path>
+                <circle cx="7" cy="17" r="2"></circle>
+                <path d="M9 17h6"></path>
+                <circle cx="17" cy="17" r="2"></circle>
+            </svg>
+            <h1>CarBot Assistant</h1>
+        </div>
+        <div class="messages-container" id="messages">
+        </div>
+        <form id="chat-form" class="chat-input">
+            <input type="text" id="user-input" placeholder="Type your message..." autocomplete="off">
+            <button type="submit">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="22" y1="2" x2="11" y2="13"></line>
+                    <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                </svg>
+            </button>
+        </form>
+    </div>
+    <script>
+        const carFeatures = [
+            {
+                name: 'Brand',
+                description: 'The manufacturer of the car. A reputable brand often indicates reliability and resale value.',
+                example: 'Toyota, Honda, BMW, etc.',
+                suggestions: ['Toyota', 'Honda', 'BMW']
+            },
+            {
+                name: 'Year',
+                description: 'The manufacturing year. Newer models typically have better safety features and technology.',
+                example: '2022, 2023, 2024',
+                suggestions: ['2024', '2023', '2022']
+            },
+            {
+                name: 'Price',
+                description: 'The cost of the vehicle. Important for budgeting and financing decisions.',
+                example: '$25,000, $30,000, etc.',
+                suggestions: ['$25,000', '$30,000', '$35,000']
+            },
+            {
+                name: 'Engine Type',
+                description: 'The type of engine powering the car. Affects performance and fuel efficiency.',
+                example: 'V6, Inline-4, Electric, Hybrid',
+                suggestions: ['V6', 'Inline-4', 'Electric']
+            },
+            {
+                name: 'Fuel Economy',
+                description: 'The fuel efficiency in miles per gallon (MPG). Important for long-term running costs.',
+                example: '25 MPG city / 32 MPG highway',
+                suggestions: ['25/32 MPG', '28/35 MPG', '30/38 MPG']
+            },
+            {
+                name: 'Safety Ratings',
+                description: 'Safety scores from organizations like NHTSA. Crucial for protecting you and your passengers.',
+                example: '5-star NHTSA rating, IIHS Top Safety Pick',
+                suggestions: ['5-star NHTSA', '4-star NHTSA', 'IIHS Top Pick']
+            }
+        ];
+
+        class CarBot {
+            constructor() {
+                this.messages = document.getElementById('messages');
+                this.form = document.getElementById('chat-form');
+                this.input = document.getElementById('user-input');
+                this.currentFeatureIndex = -1;
+                this.isStarted = false;
+                this.userResponses = {};
+
+                this.form.addEventListener('submit', (e) => this.handleSubmit(e));
+                this.initialize();
+            }
+
+            initialize() {
+                this.sendBotMessage(
+                    "👋 Welcome to CarBot! I'm here to help you understand important car features and collect information about your car preferences.",
+                    ['Start Chat', 'Maybe Later']
+                );
+            }
+
+            createMessageElement(text, sender, options = null) {
+                const messageDiv = document.createElement('div');
+                messageDiv.className = `message ${sender}`;
+                messageDiv.textContent = text;
+
+                if (options) {
+                    const optionsDiv = document.createElement('div');
+                    optionsDiv.className = 'options';
+                    options.forEach(option => {
+                        const button = document.createElement('button');
+                        button.className = 'option-button';
+                        button.textContent = option;
+                        button.addEventListener('click', () => this.handleUserMessage(option));
+                        optionsDiv.appendChild(button);
+                    });
+                    messageDiv.appendChild(optionsDiv);
+                }
+
+                return messageDiv;
+            }
+
+            sendBotMessage(text, options = null) {
+                const message = this.createMessageElement(text, 'bot', options);
+                this.messages.appendChild(message);
+                this.scrollToBottom();
+            }
+
+            sendUserMessage(text) {
+                const message = this.createMessageElement(text, 'user');
+                this.messages.appendChild(message);
+                this.scrollToBottom();
+            }
+
+            handleUserMessage(text) {
+                this.sendUserMessage(text);
+
+                if (!this.isStarted) {
+                    if (text.toLowerCase().includes('start')) {
+                        this.isStarted = true;
+                        this.currentFeatureIndex = 0;
+                        const feature = carFeatures[0];
+                        this.sendBotMessage(
+                            `Let's start with the ${feature.name}!\n\n${feature.description}\n\nExample: ${feature.example}`,
+                            feature.suggestions
+                        );
+                    } else {
+                        this.sendBotMessage(
+                            "No problem! When you're ready to start, just type 'start' or click the Start Chat button.",
+                            ['Start Chat', 'Maybe Later']
+                        );
+                    }
+                    return;
+                }
+
+                // Store user response
+                if (this.currentFeatureIndex >= 0) {
+                    this.userResponses[carFeatures[this.currentFeatureIndex].name] = text;
+                }
+
+                if (this.currentFeatureIndex < carFeatures.length - 1) {
+                    this.currentFeatureIndex++;
+                    const nextFeature = carFeatures[this.currentFeatureIndex];
+                    this.sendBotMessage(
+                        `Great! Now, let's talk about the ${nextFeature.name}.\n\n${nextFeature.description}\n\nExample: ${nextFeature.example}`,
+                        nextFeature.suggestions
+                    );
+                } else {
+                    const summary = this.generateSummary();
+                    this.sendBotMessage(
+                        summary,
+                        ['Start New Search', 'End Chat']
+                    );
+                    console.log('User Responses:', this.userResponses);
+                    this.currentFeatureIndex = -1;
+                    this.isStarted = false;
+                }
+            }
+
+            generateSummary() {
+                let summary = "Perfect! I've gathered all the information about your car preferences:\n\n";
+                for (const [feature, value] of Object.entries(this.userResponses)) {
+                    summary += `${feature}: ${value}\n`;
+                }
+                summary += "\nI'll analyze your preferences and provide recommendations for the best matches. Thank you for using CarBot!";
+                return summary;
+            }
+            
+            handleSubmit(e) {
+                e.preventDefault();
+                const text = this.input.value.trim();
+                if (text) {
+                    this.handleUserMessage(text);
+                    this.input.value = '';
+                }
+            }
+
+            scrollToBottom() {
+                this.messages.scrollTop = this.messages.scrollHeight;
+            }
+        }
+
+        // Initialize the chatbot
+        new CarBot();
+    </script>
+</body>
+
+</html>

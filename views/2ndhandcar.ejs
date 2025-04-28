@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Second-Hand Cars</title>
+    <style>
+        /* Basic Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            color: #333;
+        }
+
+        /* Navbar Styling */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1em;
+            background-color: #333;
+            color: #fff;
+        }
+
+        .navbar .logo {
+            font-size: 1.5em;
+            color: #fff;
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+        }
+
+        .nav-links li {
+            margin-left: 1em;
+        }
+
+        .nav-links a {
+            color: #fff;
+            text-decoration: none;
+        }
+
+        /* Banner Styling */
+        .banner {
+            background-image: url('https://blog.kuwy.in/blog-admin/post-image/blog_banner1697976818.jpg');
+            background-size: cover;
+            background-position: center;
+            height: 600px;
+            padding: 4em;
+            text-align: center;
+            color: #fff;
+            position: relative;
+        }
+
+        .banner::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+        }
+
+        .banner h1 {
+            font-size: 3em;
+            margin-bottom: 0.5em;
+            font-weight: bold;
+        }
+
+        .banner p {
+            font-size: 1.5em;
+        }
+
+        /* Car Section */
+        .car-section {
+            padding: 2em;
+            text-align: center;
+        }
+
+        .filter {
+            margin-bottom: 2em;
+            text-align: center;
+        }
+
+        .car-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            /* Adjust the number of columns */
+            gap: 1.5em;
+            justify-items: center;
+            margin-top: 2em;
+        }
+
+        .car-card {
+            border: 1px solid #ccc;
+            padding: 1em;
+            border-radius: 5px;
+            width: 100%;
+            text-align: left;
+            transition: transform 0.2s ease;
+        }
+
+        .car-card:hover {
+            transform: scale(1.05);
+        }
+
+        .car-card img {
+            width: 100%;
+            border-radius: 5px;
+        }
+
+        /* Contact Section */
+        .contact-section {
+            padding: 2em;
+            background-color: #f4f4f4;
+            text-align: center;
+        }
+
+        /* Footer */
+        footer {
+            padding: 1em;
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Header and Banner -->
+    <header>
+        <nav class="navbar">
+            <a href="#" class="logo">UsedCarShop</a>
+            <ul class="nav-links">
+                <li><a href="#cars">Cars</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+        <div class="banner">
+            <!-- <h1>Find Your Perfect Used Car</h1>
+            <p>Browse through a wide variety of second-hand cars at affordable prices!</p> -->
+        </div>
+    </header>
+
+    <!-- Car Listings and Filters -->
+    <section id="cars" class="car-section">
+        <div class="filter">
+            <h2>Filter by Price, Year & Condition:</h2>
+            <label>Max Price:
+                <input type="range" id="priceRange" min="5000" max="50000" value="20000" oninput="updatePriceDisplay()">
+            </label>
+            <span id="priceValue">$20,000</span>
+
+            <label>Year:
+                <input type="number" id="yearFilter" min="2000" max="2024" value="2015" oninput="filterCars()">
+            </label>
+            <span id="yearValue">2015</span>
+
+            <label>Condition:
+                <select id="conditionFilter" onchange="filterCars()">
+                    <option value="any">Any</option>
+                    <option value="new">New</option>
+                    <option value="used">Used</option>
+                </select>
+            </label>
+        </div>
+
+        <div class="car-list" id="carList">
+            <!-- Car listings will go here -->
+        </div>
+    </section>
+
+    <!-- Contact and Footer -->
+    <section id="contact" class="contact-section">
+        <h2>Contact Us</h2>
+        <p>If you're interested in any of the cars, or have questions, reach out to us!</p>
+        <a href="1sttry.html" class="btn-primary">Go back to main page</a>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 UsedCarShop. All rights reserved.</p>
+    </footer>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const carData = [
+                { id: 1, name: "Toyota Corolla", price: 15000, year: 2014, condition: "used", image: "https://imgd.aeplcdn.com/300x225/cw/ucp/stockApiImg/S1KZ8FF_a51ef6778a2e400481c696422e79bfdf_1_29669248.jpg?q=80" },
+                { id: 2, name: "Honda Civic", price: 18000, year: 2016, condition: "used", image: "https://imgd.aeplcdn.com/300x225/cw/ucp/stockApiImg/FG8TY4Q_467880923357461c89e8e1cbff3c0c11_1_27883861.jpg?q=80" },
+                { id: 3, name: "Ford Mustang", price: 55000, year: 2018, condition: "used", image: "data:image/jpeg;base64,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" },
+                { id: 4, name: "Chevrolet Malibu", price: 22000, year: 2017, condition: "used", image: "https://carfax-img.vast.com/carfax/v2/-5819663207856499863/1/344x258" },
+                { id: 5, name: "baleno", price: 35000, year: 2015, condition: "used", image: "https://akm-img-a-in.tosshub.com/indiatoday/images/story/202410/maruti-suzuki-baleno-142530342-16x9_0.jpeg?VersionId=tYlgUOoptoOpornItgZKTlE9IZHbZEGC&size=690:388" }
+            ];
+
+            const carList = document.getElementById("carList");
+            const priceRange = document.getElementById("priceRange");
+            const priceValue = document.getElementById("priceValue");
+            const yearFilter = document.getElementById("yearFilter");
+            const yearValue = document.getElementById("yearValue");
+            const conditionFilter = document.getElementById("conditionFilter");
+
+            // Initial display of cars
+            displayCars(carData);
+
+            // Update displayed price and filter cars in real-time
+            priceRange.addEventListener("input", function () {
+                updatePriceDisplay();
+                filterCars();
+            });
+
+            yearFilter.addEventListener("input", function () {
+                updateYearDisplay();
+                filterCars();
+            });
+
+            conditionFilter.addEventListener("change", function () {
+                filterCars();
+            });
+
+            // Function to update the price display
+            function updatePriceDisplay() {
+                priceValue.textContent = `$${parseInt(priceRange.value).toLocaleString()}`;
+            }
+
+            // Function to update the year display
+            function updateYearDisplay() {
+                yearValue.textContent = yearFilter.value;
+            }
+
+            // Filter cars based on price, year, and condition
+            function filterCars() {
+                const maxPrice = parseInt(priceRange.value);
+                const year = parseInt(yearFilter.value);
+                const condition = conditionFilter.value;
+
+                const filteredCars = carData.filter(car => {
+                    return (car.price <= maxPrice) &&
+                        (car.year >= year) &&
+                        (condition === "any" || car.condition === condition);
+                });
+                displayCars(filteredCars);
+            }
+
+            // Display cars in the car list section
+            function displayCars(cars) {
+                carList.innerHTML = ""; // Clear the previous cars
+                if (cars.length === 0) {
+                    carList.innerHTML = "<p>No cars found matching the filters.</p>";
+                } else {
+                    cars.forEach(car => {
+                        const carCard = document.createElement("div");
+                        carCard.className = "car-card";
+                        carCard.innerHTML = `
+                            <img src="${car.image}" alt="${car.name}">
+                            <h3>${car.name}</h3>
+                            <p>Price: $${car.price.toLocaleString()}</p>
+                            <p>Year: ${car.year}</p>
+                            <p>Condition: ${car.condition}</p>
+                        `;
+                        carList.appendChild(carCard);
+                    });
+                }
+            }
+        });
+    </script>
+
+</body>
+
+</html>

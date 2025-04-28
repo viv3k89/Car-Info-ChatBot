@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+    <link rel="stylesheet" href="stylesignup.css"> 
+    
+</head>
+
+<body>
+    <!-- Video background -->
+    <video class="background-video" autoplay loop muted>
+        <source src="https://cdn.pixabay.com/video/2021/09/13/88481-606110665_large.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+
+    <div class="container">
+        <h1>Sign Up</h1>
+        <form id="signupForm" action="http://localhost:8080/dash">
+            <div class="input-group">
+                <label for="username">Username:</label>
+                <input type="text" id="username" required>
+            </div>
+            <div class="input-group">
+                <label for="password">Password:</label>
+                <input type="password" id="password" required>
+                <input type="checkbox" id="showPassword"> Show Password
+            </div>
+            <div class="input-group">
+                <label for="confirmPassword">Confirm Password:</label>
+                <input type="password" id="confirmPassword" required>
+            </div>
+            <button type="submit">Sign Up</button>
+        </form>
+        <p id="message"></p>
+        <p>Already have an account? <a href="http://localhost:8080/login" id="loginLink">Log In</a></p>
+    </div>
+
+    <script>
+        document.getElementById('signupForm').addEventListener('submit', function (event) {
+            event.preventDefault(); // Prevent the form from submitting
+
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+
+            // Check if passwords match
+            if (password !== confirmPassword) {
+                document.getElementById('message').textContent = 'Passwords do not match.';
+                return;
+            }
+
+            // Here you can add code to handle the signup process (e.g., send data to a server)
+            document.getElementById('message').textContent = 'Sign up successful! You can now log in.';
+        });
+
+        document.getElementById('showPassword').addEventListener('change', function () {
+            const passwordField = document.getElementById('password');
+            const confirmPasswordField = document.getElementById('confirmPassword');
+            const isChecked = this.checked;
+
+            // Toggle password visibility
+            passwordField.type = isChecked ? 'text' : 'password';
+            confirmPasswordField.type = isChecked ? 'text' : 'password';
+        });
+    </script>
+</body>
+
+</html>

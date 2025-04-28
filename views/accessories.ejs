@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AutoStyle Accessories</title>
+    <style>
+        /* Basic Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            color: #333;
+            background-color: #f4f4f9;
+        }
+
+        /* Header */
+        header {
+            background-color: #222;
+            color: #fff;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        header h1 {
+            font-size: 28px;
+            color: #ff6b6b;
+            font-weight: bold;
+        }
+
+        header ul {
+            list-style: none;
+            display: flex;
+        }
+
+        header ul li {
+            margin: 0 15px;
+        }
+
+        header ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 16px;
+            transition: color 0.3s;
+        }
+
+        header ul li a:hover {
+            color: #ff6b6b;
+        }
+
+        #search {
+            padding: 8px;
+            border-radius: 4px;
+            border: none;
+            outline: none;
+        }
+
+        /* Banner */
+        #banner {
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('your-banner-image.jpg') no-repeat center center/cover;
+            color: #fff;
+            text-align: center;
+            padding: 100px 20px;
+            height: 70vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5);
+        }
+
+        #banner .banner-content h2 {
+            font-size: 48px;
+            font-weight: bold;
+            margin-bottom: 15px;
+            animation: fadeInDown 1s ease-out;
+        }
+
+        #banner p {
+            font-size: 18px;
+            margin-bottom: 20px;
+            max-width: 600px;
+            animation: fadeInDown 1.2s ease-out;
+        }
+
+        #banner button {
+            margin: 10px;
+            padding: 12px 25px;
+            border: none;
+            background-color: #ff6b6b;
+            color: #fff;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+            animation: fadeInUp 2.2s ease-out;
+        }
+
+        #banner button:hover {
+            background-color: #ff5151;
+        }
+
+        /* Categories Section */
+        #categories {
+            padding: 60px 20px;
+            text-align: center;
+            background-color: #fff;
+        }
+
+        #categories h2 {
+            font-size: 36px;
+            color: #222;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        .category-item {
+            padding: 30px;
+            background-color: #f9f9f9;
+            border-radius: 10px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .category-item:hover {
+            transform: scale(1.05);
+            box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .category-item h3 {
+            font-size: 24px;
+            color: #ff6b6b;
+            margin-bottom: 10px;
+        }
+
+        /* Products Section */
+        #products {
+            padding: 60px 20px;
+            background-color: #f4f4f9;
+        }
+
+        #products h2 {
+            font-size: 36px;
+            color: #222;
+            text-align: center;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .product-item {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .product-item:hover {
+            transform: scale(1.05);
+            box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .product-item h4 {
+            font-size: 20px;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .product-item p {
+            font-size: 16px;
+            color: #555;
+            margin-bottom: 10px;
+        }
+
+        /* Customization Tool */
+        #customize {
+            padding: 60px 20px;
+            text-align: center;
+            background-color: #fff;
+        }
+
+        #customize h2 {
+            font-size: 36px;
+            color: #222;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+
+        #customize p {
+            font-size: 18px;
+            color: #666;
+            max-width: 600px;
+            margin: auto;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #222;
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+            margin-top: 20px;
+        }
+
+        footer a {
+            color: #ff6b6b;
+            margin: 0 10px;
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.3s;
+        }
+
+        footer a:hover {
+            color: #ff5151;
+        }
+
+        /* Animations */
+        @keyframes fadeInDown {
+            0% {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            0% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header -->
+    <header>
+        <nav>
+            <h1>AutoStyle Accessories</h1>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#categories">Categories</a></li>
+                <li><a href="#customize">Customize</a></li>
+                <li><a href="#contact">Contact Us</a></li>
+            </ul>
+            <!-- <input type="text" id="search" placeholder="Search Accessories..."> -->
+        </nav>
+    </header>
+    <!-- Dropdown Search Section -->
+    <section id="find-accessories" style="padding: 20px;">
+        <h2>Find Accessories</h2>
+        <div class="dropdown">
+            <input type="text" id="accessoryInput" placeholder="Search for Accessories..."
+                style="padding: 8px; width: 200px; border: 1px solid #ddd; border-radius: 4px;">
+            <div id="dropdownContent" class="dropdown-content"
+                style="display: none; position: absolute; background-color: #fff; min-width: 220px; box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2); max-height: 200px; overflow-y: auto; border-radius: 4px; border: 1px solid #ddd;">
+                <a href="#">Seat Covers</a>
+                <a href="#">Floor Mats</a>
+                <a href="#">Sun Shades</a>
+                <a href="#">Car Chargers</a>
+                <a href="#">Dash Cams</a>
+                <a href="#">Roof Racks</a>
+                <a href="#">Steering Wheel Covers</a>
+                <a href="#">Air Fresheners</a>
+                <a href="#">Phone Holders</a>
+                <a href="#">LED Lights</a>
+                <a href="#">Backup Cameras</a>
+                <a href="#">Bluetooth Adapters</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Banner -->
+    <section id="banner">
+        <div class="banner-content">
+            <h2>Upgrade Your Drive with Premium Accessories</h2>
+            <p>Discover the latest in style, comfort, and technology for your car.</p>
+            <button>Shop Now</button>
+            <button>Customize Your Car</button>
+        </div>
+    </section>
+
+
+    <!-- Featured Categories -->
+    <section id="categories">
+        <h2>Featured Categories</h2>
+        <div class="category-grid">
+            <div class="category-item">
+                <h3>Interior Accessories</h3>
+                <p>Find seat covers, mats, and more.</p>
+            </div>
+            <div class="category-item">
+                <h3>Exterior Accessories</h3>
+                <p>Enhance your car's exterior look.</p>
+            </div>
+            <div class="category-item">
+                <h3>Electronics & Gadgets</h3>
+                <p>Latest tech for a smarter drive.</p>
+            </div>
+            <div class="category-item">
+                <h3>Maintenance & Care</h3>
+                <p>Keep your car in top condition.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Product Gallery Placeholder -->
+    <section id="products">
+        <h2>Popular Products</h2>
+        <div class="product-grid">
+            <!-- Product items can be added here in this section -->
+        </div>
+    </section>
+
+    <!-- Customization Tool -->
+    <section id="customize">
+        <h2>Customize Your Car</h2>
+        <p>Select your car model and try different accessories!</p>
+        <!-- Customization tool placeholder -->
+        <a href="1sttry.html" class="btn-primary">back to the main page</a>
+    </section>
+
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 AutoStyle Accessories</p>
+        <div>
+            <a href="#">Privacy Policy</a>
+            <a href="#">Terms of Service</a>
+            <a href="#">Contact Us</a>
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById('search').addEventListener('input', function () {
+            let query = this.value.toLowerCase();
+            console.log("Searching for:", query);
+            // Implement dynamic search filtering here
+        });
+    </script>
+    <!-- JavaScript for Dropdown Search -->
+    <script>
+        const accessoryInput = document.getElementById('accessoryInput');
+        const dropdownContent = document.getElementById('dropdownContent');
+
+        accessoryInput.addEventListener('input', function () {
+            const filter = accessoryInput.value.toLowerCase();
+            const items = dropdownContent.getElementsByTagName('a');
+
+            // Show dropdown when user starts typing
+            dropdownContent.style.display = 'block';
+
+            // Loop through items and hide those that don't match
+            for (let i = 0; i < items.length; i++) {
+                const txtValue = items[i].textContent || items[i].innerText;
+                items[i].style.display = txtValue.toLowerCase().includes(filter) ? "" : "none";
+            }
+        });
+
+        // Close dropdown when clicking outside
+        window.onclick = function (event) {
+            if (!event.target.matches('#accessoryInput')) {
+                dropdownContent.style.display = 'none';
+            }
+        };
+    </script>
+</body>
+
+</html>
